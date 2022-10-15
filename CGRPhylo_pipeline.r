@@ -8,8 +8,8 @@ file <- "example.fasta"
 library("seqinr")
 fastafile <- seqinr::read.fasta(file = file, seqtype = "DNA", as.string = TRUE, set.attributes = FALSE)
 
-source('C:/Users/athind/OneDrive - University of Wollongong/CGAT_covid19/cgat_function.r') 
-source('C:/Users/athind/OneDrive - University of Wollongong/CGAT_covid19/distances.r')
+source('cgat_function.r') 
+source('distances.r')
 
 
 ##########################################################################
@@ -37,7 +37,7 @@ for(n in 1:length(fastafile)) {
     length_n[n_new] <- nchar(fastafile[[n]])
     n_new <- n_new+1
     
-  }else{ print(paste("Sequnce",sequence[n]," is filetred"), sep = '\t')}
+  }else{ print(paste("Filtering ",sequence[n]), sep = '\t')}
 }
 names(fastafile_new) <- sequence_new
 
@@ -66,7 +66,7 @@ len_trim <- min(lk$V1)
 ############ Create frequency matrix object for each sequence; one by one #############
 ######################################################################################
 
-k_mer <- 3  ## define the value of K
+k_mer <- 6  ## define the value of K
 Freq_mat_obj <- list()
 sequence_new <- names(fastafile_new) 
 
@@ -75,12 +75,10 @@ source('C:/Users/athind/OneDrive - University of Wollongong/CGAT_covid19/cgat_fu
 for(n in 1:length(fastafile_new)) {   
   
   ##skip passing whole data to the function ##increase speed  ## "fastafile_new" name is fixed 
-  
   Freq_mat_obj[[n]] <- cgat(k_mer,n, len_trim) # executing one seq at a time #k-mer,seq_length,trimmed_length
   print(paste("processing sequence : ",n , sequence_new[n], sep=" "))
   
 }
-
 names(Freq_mat_obj) <- sequence_new
 
 #################################################################################
