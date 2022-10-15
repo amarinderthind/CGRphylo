@@ -44,24 +44,7 @@ names(fastafile_new) <- sequence_new
 #write fasta file from filtered sequences
 #seqinr::write.fasta(sequences=fastafile_new,names =sequence_new,file.out =paste("Filtered_N",N_filter,"_new_seq.fasta",sep = ''))
 
-##########################################################################################
-################### Charactersticks of the sequences #####################################
-##########################################################################################
  
-lk <- as.data.frame(t(as.data.frame(length_n)))
-lk$name <- sequence_new
-lk <-as.data.frame(lk)
-
-sd(lk$V1)
-boxplot(lk$V1)
-#boxplot(log2(lk$V1+1))
-median(lk$V1)
-range(lk$V1)
-
-len_trim <- min(lk$V1)
-
-#write.csv(lk,paste("length_and_names",N_filter,".csv"))
-
 #######################################################################################
 ############ Create frequency matrix object for each sequence; one by one #############
 ######################################################################################
@@ -75,7 +58,7 @@ source('C:/Users/athind/OneDrive - University of Wollongong/CGAT_covid19/cgat_fu
 for(n in 1:length(fastafile_new)) {   
   
   ##skip passing whole data to the function ##increase speed  ## "fastafile_new" name is fixed 
-  Freq_mat_obj[[n]] <- cgat(k_mer,n, len_trim) # executing one seq at a time #k-mer,seq_length,trimmed_length
+  Freq_mat_obj[[n]] <- cgat(k_mer,n, nchar(fastafile[[n]])) # executing one seq at a time #k-mer,seq_length,trimmed_length
   print(paste("processing sequence : ",n , sequence_new[n], sep=" "))
   
 }
