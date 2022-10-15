@@ -1,5 +1,4 @@
-# CGR
-CGR package for phylogeny
+# CGRPhylo Pipeline: Chaos Game Representation for phylogeny
 
 
 ### Overview
