@@ -53,7 +53,7 @@ k_mer <- 6  ## define the value of K
 Freq_mat_obj <- list()
 sequence_new <- names(fastafile_new) 
 
-source('C:/Users/athind/OneDrive - University of Wollongong/CGAT_covid19/cgat_function.r')
+source('cgat_function.r')
 
 for(n in 1:length(fastafile_new)) {   
   
