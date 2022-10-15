@@ -31,11 +31,13 @@ The clustering of the sequences is based on the distances calculated from the fr
 ##### Visualization of CGR plot
 CGRs for each sequence can be visualized by selecting the sequence.
 
-### Download Results
-The file that can be saved
+###  Saving Results in different output formats
+
+The results can be saved at different steps and different format for tree visulization with third party tools.
 
 1) Distance Matrix file- It is (.txt) text file that contains pairwise distance matrix generated using input sequences. We used Euclidean distance method to calculate pairwise distances between multiple whole genome sequences. It contains output in standard PHYLIP distance matrix format. Following is the screenshot of the file for example data.
- ![image](https://user-images.githubusercontent.com/45668229/186616689-8c4f8efa-06fa-4d4f-bffa-1b3fbe71cdf4.png)
+![tt](https://user-images.githubusercontent.com/45668229/195969269-dd01ab1c-d94b-4e52-9abc-bb8c14474524.png)
+
  
  2) Word Frequency file- It is a (.txt) text file that contains frequencies of all different k-letter words corresponding to CGR map.
 
