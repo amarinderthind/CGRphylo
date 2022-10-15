@@ -36,6 +36,8 @@ CGRs for each sequence can be visualized by selecting the sequence.
 The results can be saved at different steps and different format for tree visulization with third party tools.
 
 1) Distance Matrix file- It is (.txt) text file that contains pairwise distance matrix generated using input sequences. We used Euclidean distance method to calculate pairwise distances between multiple whole genome sequences. It contains output in standard PHYLIP distance matrix format. Following is the screenshot of the file for example data.
+
+
 ![tt](https://user-images.githubusercontent.com/45668229/195969269-dd01ab1c-d94b-4e52-9abc-bb8c14474524.png)
 
  
