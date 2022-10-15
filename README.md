@@ -50,4 +50,10 @@ For example – At k=3 in example data set
 
 3) Outtree,  users can save outtree files. These files contains information about trees generated in standard NEWICK format or other. These files are compatible with standard bioinformatics tools like TreeView , MEGA etc. to create, view , edit and customize trees.
 
- 
+Following example shows the SARS-CoV-2 different strains cladogram created using CGRPhylo.. 
+
+
+
+
+ ![figure5 copy](https://user-images.githubusercontent.com/45668229/195969475-b84d614e-e43d-4e67-ba25-416a5a102f44.png)
+
