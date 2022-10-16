@@ -5,7 +5,7 @@ Chaos Game Representation (CGR) is an iterative mapping technique to construct a
 
 CGRs have been conventionally used to visualize the large nucleotide sequences. However, apart from visualization, CGRs can be used to compare DNA sequences, construct cladograms and address various biological problems. It effectively classify very similar sequences (e.g., sub-subtypes of HIV-1 sequences) and deliver better resolved classification trees when compared to standard Maximum Likelihood methods. 
 
-In this CGR package (Written in R), core module is integrated with various packages to provide a complete pipeline for multiple whole genome sequence comparison using Chaos Game Representation (CGR) based approach. CGR based distance matrices can be converted to phylogency tree. The most important and significant idea behind this pipeline is its ability to handle large DNA sequences (As user machine).
+In this CGR package (Written in R), core module is integrated with various packages to provide a complete pipeline for multiple whole genome sequence comparison using Chaos Game Representation (CGR) based approach. CGR based distance matrices can be converted to phylogency tree. The most important idea for the development of this pipeline is its ability to handle large DNA sequences (As user machine).
 
 It efficiently classifies sequences based on both inter-species and intra-species variation in a computationally less intense manner. It analyses whole genome variations using an alignment free and scale invariant method resulting in trees that can be used to interpret similarity between multiple whole genome sequences, even when they are closely related.
 
