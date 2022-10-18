@@ -18,7 +18,7 @@ These Sequences are then used to calculate frequencies of words at user specifie
 
 ##### Input file requirements
 
-The DNA sequences to be analyzed can be uploaded in the form fasta file. All the sequences must be in FASTA format.  
+The DNA sequences to be analyzed can be uploaded in the form fasta file. All the sequences must be in FASTA format. Check the example file for details.  
 
 #### Filtering and trimming, if required 
 
