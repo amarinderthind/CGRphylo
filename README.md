@@ -29,6 +29,8 @@ The clustering of the sequences is based on the distances calculated from the fr
 ##### Visualization of CGR plot
 CGRs for each sequence can be visualized by selecting the sequence.
 
+![CGR_2plots](https://user-images.githubusercontent.com/45668229/196325788-e054df7d-2689-4e77-89c7-53c9f6797a6c.png)
+
 ###  Saving Results in different output formats
 
 The results can be saved at different steps and different format for tree visulization with third party tools.
