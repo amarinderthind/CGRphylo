@@ -20,7 +20,10 @@ These Sequences are then used to calculate frequencies of words at user specifie
 
 The DNA sequences to be analyzed can be uploaded in the form fasta file. All the sequences must be in FASTA format. Check the example file for details.  
 
-#### Filtering and trimming, if required 
+##### Filtering and trimming, if required 
+##### Sequence length and GC content /Meta info
+
+![image](https://user-images.githubusercontent.com/45668229/196326195-f5a3172d-78f1-4bc8-a225-51d80a993834.png)
 
 
 ##### Selection of "Word Length"
