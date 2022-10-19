@@ -177,8 +177,23 @@ Distance Matrix (as shown below) contains pairwise distance matrix generated usi
 
 ![tt](https://user-images.githubusercontent.com/45668229/195969269-dd01ab1c-d94b-4e52-9abc-bb8c14474524.png)
 
+Creating and Saving tree into newick, Nexus format (pipeline use `ape` and `treeio` Bioconductor package)
 
 Outtree,  users can save outtree files created by NJ method of Bioconductor package 'ape'. These files contains information about trees generated in standard NEWICK format or other. These files are compatible with standard bioinformatics tools like TreeView , MEGA etc. to create, view , edit and customize trees. 
+
+```
+tree <-write.tree(my_nj, file = "", append = FALSE, digits = 10, tree.names = FALSE)
+
+ape::write.tree(my_nj, file='Newick_NJ_tree.txt') #for Newick format #write out trees in a text file
+ape::write.nexus(my_nj, file='Nexus_NJ_tree.nex') ##for Nexus format
+
+
+## reading tree from file 
+ newick.tree <- ape::read.tree("Newick_NJ_tree.txt")  
+ nexus.tree <- ape::read.nexus("Nexus_NJ_tree.nex")
+```
+
+Following tree is created this pipeline and later modified/label using mega software. 
 
  <p align="center">
 <img src="https://user-images.githubusercontent.com/45668229/195969475-b84d614e-e43d-4e67-ba25-416a5a102f44.png" width=60% height=600>
