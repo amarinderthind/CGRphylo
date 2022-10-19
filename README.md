@@ -153,14 +153,30 @@ distance[1:5,1:3]
 
 #plot(hclust(as.dist(distance)))
 ```
-###  Saving Results in different output formats
+###  Saving Results in different output formats (mega, phylip, newick, Nexus)
 
-The results can be saved into mega or phylip format for tree visulization with third party tools.
+For tree visulization with third party tools, results can be saved into mega or phylip format using `saveMegaDistance` and `savePhylipDistance` respectively.
+
+```
+Mega_file_name <- paste('Recombi_N_filtering_',N_filter,'_mega_distance_file_for_k_',k_mer,'.meg')
+
+### save 
+saveMegaDistance(Mega_file_name, distance) ## inputs are file name (with path) and distance 
+
+PhylipFile_name <- paste('Phylip_N_filtering_',N_filter,'distances_k_',k_mer,'.txt')
+
+ ## inputs are file name (with path) and distance 
+savePhylipDistance(PhylipFile_name, distance, mode= 'original')  ## relaxed or original/other
+
+##typical phylip allows 10 charcter for texa name ##new relaxed formart allows 250
+## http://www.phylo.org/index.php/help/relaxed_phylip
+```
 
 Distance Matrix (as shown below) contains pairwise distance matrix generated using input sequences. By default CGRPhylo use Euclidean distance method to calculate pairwise distances between multiple whole genome sequences.
 
 
 ![tt](https://user-images.githubusercontent.com/45668229/195969269-dd01ab1c-d94b-4e52-9abc-bb8c14474524.png)
+
 
 Outtree,  users can save outtree files created by NJ method of Bioconductor package 'ape'. These files contains information about trees generated in standard NEWICK format or other. These files are compatible with standard bioinformatics tools like TreeView , MEGA etc. to create, view , edit and customize trees. 
 
