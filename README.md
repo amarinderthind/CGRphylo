@@ -196,5 +196,5 @@ ape::write.nexus(my_nj, file='Nexus_NJ_tree.nex') ##for Nexus format
 Following tree is created this pipeline and later modified/label using mega software. 
 
  <p align="center">
-<img src="https://user-images.githubusercontent.com/45668229/195969475-b84d614e-e43d-4e67-ba25-416a5a102f44.png" width=60% height=600>
+<img src="https://user-images.githubusercontent.com/45668229/195969475-b84d614e-e43d-4e67-ba25-416a5a102f44.png" width=60% height=400>
 </p>
