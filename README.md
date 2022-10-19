@@ -130,7 +130,26 @@ for(n in 1:length(fasta_filtered)) {
 
 names(Freq_mat_obj) <- sequence_new
 ```
+## Calculate distances 
+User can use any of Euclidean (default),or  Square euclidean or Manhattan distance for the distance matrices.
 
+```
+j <- length(sequence_new)
+
+distance <- matrix(0,j,j)  ## defining the empty matrix from distance calculations
+row.names(distance) <- sequence_new[1:j]
+colnames(distance) <- sequence_new[1:j]
+
+for(n in 1:j) { 
+  for(cr in 1:j) {
+distance[n,cr] <- matrixDistance(Freq_mat_obj[[n]],Freq_mat_obj[[cr]],distance_type ='Euclidean' )  ##'Euclidean','S_Euclidean' and Manhattan
+}}
+
+distance <- round(distance, 5)
+distance[1:5,1:3]
+
+#plot(hclust(as.dist(distance)))
+```
 ###  Saving Results in different output formats
 
 The results can be saved into mega or phylip format for tree visulization with third party tools.
