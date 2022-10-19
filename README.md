@@ -84,13 +84,52 @@ len_trim <- min(meta$length)
  
 <img src="https://user-images.githubusercontent.com/45668229/196326195-f5a3172d-78f1-4bc8-a225-51d80a993834.png" width="1000" height="400">
 
-##### Selection of "Word Length"
-The clustering of the sequences is based on the distances calculated from the frequencies of DNA words. The word length to be used for the calculation can be specified. This default word length used is 6.  
 
 ##### Visualization of CGR plot
 CGRs for each sequence can be visualized by selecting the sequence.
 
+```
+source('cgrplot.r')
+cgr1 <- cgrplot(1) ## enter the number of sequence from  "fasta_filtered"
+
+
+plot(cgr1[,1],cgr1[,2], main=paste("CGR plot of", names(fasta_filtered)[1],sep=''),
+     xlab = "", ylab = "", cex=0.2, pch = 4, frame = TRUE) 
+
+#compare 2 cgr plots
+cgr2 <- cgrplot(4)
+
+library('RColorBrewer')
+pal <- brewer.pal(8,"Dark2")
+par(mfrow=c(1,2))
+
+plot(cgr1[,1],cgr1[,2], main=paste("CGR plot of ", names(fasta_filtered)[1],sep=''),
+     xlab = "", ylab = "", cex.main=0.5, cex=0.4, pch = 4, frame = TRUE) 
+plot(cgr2[,1],cgr2[,2], main=paste("CGR plot of ", names(fasta_filtered)[2],sep=''),
+     xlab = "", ylab = "",cex.main=0.5,cex=0.4,pch = 4, frame = TRUE) 
+```
+
 ![CGR_2plots](https://user-images.githubusercontent.com/45668229/196325788-e054df7d-2689-4e77-89c7-53c9f6797a6c.png)
+
+##### Create frequency object for sequences for specific "Word Length"
+The clustering of the sequences is based on the distances calculated from the frequencies of DNA words. The word length to be used for the calculation can be specified. This default word length used is 6.  
+
+```
+k_mer <- 6  ## define the value of K
+Freq_mat_obj <- list()
+sequence_new <- names(fasta_filtered) 
+
+for(n in 1:length(fasta_filtered)) {   
+  
+  ##skip passing whole data to the function ##increase speed  ## "fasta_filtered" name is fixed
+  
+  Freq_mat_obj[[n]] <- cgat(k_mer,n, len_trim) # executing one seq at a time    #k-mer,seq_length,trimmed_length
+  print(paste("processing sequence : ",n , sequence_new[n], sep=" "))
+  
+}
+
+names(Freq_mat_obj) <- sequence_new
+```
 
 ###  Saving Results in different output formats
 
