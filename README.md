@@ -53,6 +53,9 @@ seqinr::write.fasta(sequences=fasta_filtered,names =names(fasta_filtered),file.o
 ```
 
 ##### Sequence length and GC content /Meta info
+
+'create_meta' function extract various types of information from the sequences and store into dataframe. 
+
 ```
 meta <- create_meta(fastafile, N_filter) ## create seq features information
 print(paste("std dev for seq length is",sd(meta$length),sep=" "))
@@ -86,7 +89,7 @@ len_trim <- min(meta$length)
 
 
 ##### Visualization of CGR plot
-CGRs for each sequence can be visualized by selecting the sequence.
+CGRs for each sequence can be visualized by selecting the sequence. 'cgrplot' function creates the 'x' and 'y' cordinates for each base pair (to plot on CRG plot).
 
 ```
 source('cgrplot.r')
