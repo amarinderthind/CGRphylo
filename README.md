@@ -29,9 +29,53 @@ These Sequences are then used to calculate frequencies of words at user specifie
 
 The DNA sequences to be analyzed can be uploaded in the form fasta file. All the sequences must be in FASTA format. Check the example file for details.  
 
-##### Filtering and trimming, if required 
-##### Sequence length and GC content /Meta info
+```
+setwd(".")
+source('cgat_function.r')
+source('distances_n_other.r')
 
+file <- "recom_3.fasta"
+
+library("seqinr")
+fastafile <- seqinr::read.fasta(file = file, seqtype = "DNA", as.string = TRUE, set.attributes = FALSE)
+```
+
+##### Filtering and trimming, if required 
+```
+library(stringr)
+
+N_filter <- 50  ## filter sequence with n bases > this value
+fasta_filtered <- fastafile_new(fastafile, N_filter) ## create filtered sequence file
+
+#write fasta file from filtered sequences
+seqinr::write.fasta(sequences=fasta_filtered,names =names(fasta_filtered),file.out=paste("recombinant_XBB.1_Filter",N_filter,".fasta",sep = ''))
+```
+
+##### Sequence length and GC content /Meta info
+```
+meta <- create_meta(fastafile, N_filter) ## create seq features information
+print(paste("std dev for seq length is",sd(meta$length),sep=" "))
+print(paste("Median of the seq length is",median(meta$length),sep=" "))
+print("Range of the seq length")
+range(meta$length)
+
+#boxplot(meta$length, ylab="Sequence length") ## overall
+
+dotchart(meta$length, labels = meta$name, xlab = "Sequence length", pch = 21, bg = "green", pt.cex = 1, cex = 0.7)
+
+## box plot for each strains (In this example first part of the name is strain name)
+
+meta$strains <- as.character(lapply(meta$name, function(x) strsplit(x, '_')[[1]][1])) ## split strains names
+
+library(ggplot2)
+ggplot(meta, aes(x = strains, y =length, color = strains )) + geom_boxplot()+ ylab("Sequence length (group level)")+coord_flip() 
+
+#boxplot(log2(meta$length+1))
+len_trim <- min(meta$length)
+
+## Save meta
+#write.csv(meta,paste("length_and_names",N_filter,".csv"))
+```
 ![image](https://user-images.githubusercontent.com/45668229/196326195-f5a3172d-78f1-4bc8-a225-51d80a993834.png)
 
 
