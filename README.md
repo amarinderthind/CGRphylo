@@ -14,12 +14,13 @@ It efficiently classifies sequences based on both inter-species and intra-specie
 ![figure1](https://user-images.githubusercontent.com/45668229/195962013-fef235d1-6987-4b98-bab9-7d6083f01e5e.png)
 
  Word Frequency is a frequencies of all different k-letter words corresponding to CGR map. Following figure shows various K-letter words (above) and their calculated frequencies (below) at k=3 
+ 
+ <p align="center">
+ <img src="https://user-images.githubusercontent.com/45668229/186616875-97dcc3aa-0d9d-4f1b-a0f9-4db0f96f8390.png"  width="45%" height="400">&nbsp; &nbsp; &nbsp; &nbsp;
+<img src="https://user-images.githubusercontent.com/45668229/186616980-55dcef85-6164-496f-86c1-add97badadcf.png"  width="45%" height="400">
+</p>
 
-![image](https://user-images.githubusercontent.com/45668229/186616875-97dcc3aa-0d9d-4f1b-a0f9-4db0f96f8390.png)
-
-![image](https://user-images.githubusercontent.com/45668229/186616980-55dcef85-6164-496f-86c1-add97badadcf.png)
-
-#### Steps of the pipeline
+##### Steps of the pipeline
 
 Input required is a set of two or more genome sequences in FASTA format. The other input required by user is “word length (K value)” for which the frequencies of all the words in the sequences are calculated. User can also specify the Out-group for construction of Neighbor Joining Tree. 
 
@@ -62,7 +63,11 @@ range(meta$length)
 #boxplot(meta$length, ylab="Sequence length") ## overall
 
 dotchart(meta$length, labels = meta$name, xlab = "Sequence length", pch = 21, bg = "green", pt.cex = 1, cex = 0.7)
+```
 
+<img src="https://user-images.githubusercontent.com/45668229/196595195-970288f9-d2b1-48fa-90de-aab72a43981f.jpg" width="1000" height="400">
+
+```
 ## box plot for each strains (In this example first part of the name is strain name)
 
 meta$strains <- as.character(lapply(meta$name, function(x) strsplit(x, '_')[[1]][1])) ## split strains names
@@ -76,8 +81,8 @@ len_trim <- min(meta$length)
 ## Save meta
 #write.csv(meta,paste("length_and_names",N_filter,".csv"))
 ```
-![image](https://user-images.githubusercontent.com/45668229/196326195-f5a3172d-78f1-4bc8-a225-51d80a993834.png)
-
+ 
+<img src="https://user-images.githubusercontent.com/45668229/196326195-f5a3172d-78f1-4bc8-a225-51d80a993834.png" width="1000" height="400">
 
 ##### Selection of "Word Length"
 The clustering of the sequences is based on the distances calculated from the frequencies of DNA words. The word length to be used for the calculation can be specified. This default word length used is 6.  
@@ -98,5 +103,6 @@ Distance Matrix (as shown below) contains pairwise distance matrix generated usi
 
 Outtree,  users can save outtree files created by NJ method of Bioconductor package 'ape'. These files contains information about trees generated in standard NEWICK format or other. These files are compatible with standard bioinformatics tools like TreeView , MEGA etc. to create, view , edit and customize trees. 
 
- ![figure5 copy](https://user-images.githubusercontent.com/45668229/195969475-b84d614e-e43d-4e67-ba25-416a5a102f44.png)
-
+ <p align="center">
+<img src="https://user-images.githubusercontent.com/45668229/195969475-b84d614e-e43d-4e67-ba25-416a5a102f44.png" width=60% height=600>
+</p>
