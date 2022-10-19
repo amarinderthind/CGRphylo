@@ -112,7 +112,7 @@ plot(cgr2[,1],cgr2[,2], main=paste("CGR plot of ", names(fasta_filtered)[2],sep=
 ![CGR_2plots](https://user-images.githubusercontent.com/45668229/196325788-e054df7d-2689-4e77-89c7-53c9f6797a6c.png)
 
 ##### Create frequency object for sequences for specific "Word Length"
-The clustering of the sequences is based on the distances calculated from the frequencies of DNA words. The word length to be used for the calculation can be specified. This default word length used is 6.  
+The clustering of the sequences is based on the distances calculated from the frequencies of DNA words. The word length to be used for the calculation can be specified. This default word length used is 6.  `cgat` function do this job.
 
 ```
 k_mer <- 6  ## define the value of K
@@ -131,7 +131,7 @@ for(n in 1:length(fasta_filtered)) {
 names(Freq_mat_obj) <- sequence_new
 ```
 ## Calculate distances 
-User can use any of Euclidean (default),or  Square euclidean or Manhattan distance for the distance matrices.
+User can use any of Euclidean (default),or  Square euclidean or Manhattan distance for the distance matrices. matrixDistance function takes inputs in following way for distance calculations.
 
 ```
 j <- length(sequence_new)
