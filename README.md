@@ -71,8 +71,8 @@ dotchart(meta$GC_content, labels = meta$name, xlab = "GC content", pch = 21, bg 
 
 ```
  <p align="center">
-<img src="https://user-images.githubusercontent.com/45668229/196595195-970288f9-d2b1-48fa-90de-aab72a43981f.jpg" width=45% height="400">&nbsp; &nbsp; &nbsp; &nbsp;
-<img src="https://user-images.githubusercontent.com/45668229/196830695-c8702ce3-a2b8-4be0-b112-856e364b930a.png" width=45% height="400">
+<img src="https://user-images.githubusercontent.com/45668229/196873578-f08d9bd1-2778-44eb-be0a-f6b5c6bd2470.png" width=45% height="400">&nbsp; &nbsp; &nbsp; &nbsp;
+<img src="https://user-images.githubusercontent.com/45668229/196873233-fc4838ac-3787-446f-9ed3-3a3ab40e756b.png" width=45% height="400">
  
 </p>
 
