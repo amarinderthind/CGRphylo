@@ -66,10 +66,13 @@ range(meta$length)
 #boxplot(meta$length, ylab="Sequence length") ## overall
 
 dotchart(meta$length, labels = meta$name, xlab = "Sequence length", pch = 21, bg = "green", pt.cex = 1, cex = 0.7)
+
+dotchart(meta$GC_content, labels = meta$name, xlab = "GC content", pch = 21, bg = "green", pt.cex = 1, cex = 0.7)
 ```
-
-<img src="https://user-images.githubusercontent.com/45668229/196595195-970288f9-d2b1-48fa-90de-aab72a43981f.jpg" width="1000" height="400">
-
+ <p align="center">
+<img src="https://user-images.githubusercontent.com/45668229/196595195-970288f9-d2b1-48fa-90de-aab72a43981f.jpg" width="500" height="400">
+<img src="(https://user-images.githubusercontent.com/45668229/196830695-c8702ce3-a2b8-4be0-b112-856e364b930a.png" width="500" height="400">
+</p>
 ```
 ## box plot for each strains (In this example first part of the name is strain name)
 
