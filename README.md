@@ -1,9 +1,9 @@
-# CGRPhylo Pipeline: Chaos Game Representation for phylogeny
+# CGRphylo Pipeline: Chaos Game Representation for phylogeny
 
-A CGRPhylo pipeline combines the R core module with various packages to compare multiple whole genome sequences using Chaos Game Representation (CGR). CRG core function creates the frequencies object for each sequence which can be used to calculate distances among sequences. Later, CGR-based distance matrices can be converted to a phylogeny tree using neighbour-joining (NJ) or other methods. A major advantage of the CGRphylo R pipeline is its ability to handle large DNA sequences (per a user machine) and its effectiveness at classifying very similar sequences.
+A CGRphylo pipeline combines the R core module with various packages to compare multiple whole genome sequences using Chaos Game Representation (CGR). CRG core function creates the frequencies object for each sequence which can be used to calculate distances among sequences. Later, CGR-based distance matrices can be converted to a phylogeny tree using neighbour-joining (NJ) or other methods. A major advantage of the CGRphylo R pipeline is its ability to handle large DNA sequences (per a user machine) and its effectiveness at classifying very similar sequences.
 
 ### How to start
-Line-to-line Rscript is available in cgrPhlyo.r (and cgrPhylo.rmd) script. You can find out what to aspect in the o/p by following cgrPhlyo.pdf (or cgrPhylo.html).
+Line-to-line Rscript is available in cgrPhlyo.r (and CGRphylo.rmd) script. You can find out what to aspect in the o/p by following cgrPhlyo.pdf (or CGRphylo.html).
 
 ### Background
 Chaos Game Representation (CGR) is an iterative mapping technique to construct a two dimensional representation of genomic sequences (Jeffrey, 1990). CGRs have been conventionally used to visualize the large nucleotide sequences. However, apart from visualization, CGRs can be used to compare DNA sequences, construct cladograms and address various biological problems. It effectively classify very similar sequences (e.g., sub-subtypes of HIV-1 sequences) and deliver better resolved classification trees when compared to standard Maximum Likelihood methods. 
@@ -178,7 +178,7 @@ savePhylipDistance(PhylipFile_name, distance, mode= 'original')  ## relaxed or o
 ## http://www.phylo.org/index.php/help/relaxed_phylip
 ```
 
-Distance Matrix (as shown below) contains pairwise distance matrix generated using input sequences. By default CGRPhylo use Euclidean distance method to calculate pairwise distances between multiple whole genome sequences.
+Distance Matrix (as shown below) contains pairwise distance matrix generated using input sequences. By default CGRphylo use Euclidean distance method to calculate pairwise distances between multiple whole genome sequences.
 
 
 ![tt](https://user-images.githubusercontent.com/45668229/195969269-dd01ab1c-d94b-4e52-9abc-bb8c14474524.png)
