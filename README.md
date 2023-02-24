@@ -99,7 +99,8 @@ len_trim <- min(meta$length)
 CGRs for each sequence can be visualized by selecting the sequence. `cgrplot` function creates the 'x' and 'y' cordinates for each base pair (to plot on CRG plot).
 
 ```
-source('cgrplot.r')
+source('cgrplot.r') ## Load CGR plot function
+
 cgr1 <- cgrplot(1) ## enter the number of sequence from  "fasta_filtered"
 
 
