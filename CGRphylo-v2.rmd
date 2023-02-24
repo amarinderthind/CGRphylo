@@ -1,0 +1,267 @@
+---
+title: 'CGRPhylo Pipeline: Chaos Game Representation for phylogeny'
+author: Amarinder Singh Thind
+output:
+  html_document: default
+  pdf_document: default
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+require("knitr")
+opts_knit$set(root.dir = ".")
+```
+
+## Setting working directory, loading source and input files
+
+```{r}
+
+source('cgat_function.r')
+source('distances_n_other.r')
+source('cgrplot.r')
+
+
+file <- "test.fasta"
+
+library("seqinr")
+fastafile <- seqinr::read.fasta(file = file, seqtype = "DNA", as.string = TRUE, set.attributes = FALSE)
+#fastafile <- fastafile[c(1:8,21:28,41:48,53)] ## for example purpose taking subsets
+
+#seqinr::write.fasta(sequences=fastafile,names =names(fastafile),file.out=paste("Sep-2022-manuscript/recombinant_XBB.1/xbb.1.fasta",sep = ''))
+```
+
+
+## Filtering of the sequencing with specified number of 'N'  bases
+
+
+```{r}
+library(stringr)
+
+N_filter <- 50  ## filter sequence with n bases > this value
+fasta_filtered <- fastafile_new(fastafile, N_filter) ## create filtered sequence file
+
+#write fasta file from filtered sequences
+#seqinr::write.fasta(sequences=fasta_filtered,names =names(fasta_filtered),file.out=paste("Sep-2022-manuscript/recombinant_XBB.1/Filter",N_filter,"bJ.1.v2.fasta",sep = ''))
+```
+
+## Create Meta info from sequence 
+
+```{r} 
+meta <- create_meta(fastafile, N_filter) ## create seq features information
+print(paste("std dev for seq length is",sd(meta$length),sep=" "))
+print(paste("Median of the seq length is",median(meta$length),sep=" "))
+print("Range of the seq length")
+range(meta$length)
+
+####### plot sequence length
+#boxplot(meta$length, ylab="Sequence length") ## overall
+dotchart(meta$length, labels = meta$name, xlab = "Sequence length", pch = 21, bg = "green", pt.cex = 1, cex = 0.7)
+
+dotchart(meta$GC_content, labels = meta$name, xlab = "GC content", pch = 21, bg = "green", pt.cex = 1, cex = 0.7)
+
+###########
+## box plot for each strains #(In this example first part of the name is strain name)
+
+meta$strains <- as.character(lapply(meta$name, function(x) strsplit(x, '_')[[1]][1])) ## split strains names
+
+library(ggplot2)
+ggplot(meta, aes(x = strains, y =length, color = strains )) + geom_boxplot()+ ylab("Sequence length (group level)")+coord_flip() 
+
+library(ggplot2)
+ggplot(meta, aes(x = strains, y =GC_content, color = strains )) + geom_boxplot()+ ylab("GC content (group level)")+coord_flip() 
+
+
+len_trim <- min(meta$length)
+
+####### Save meta data into file
+#write.csv(meta,paste("length_and_names",N_filter,".csv"))
+```
+
+## CGR plot
+
+```{r}
+
+cgr1 <- cgrplot(1) ## enter the number of sequence from  "fasta_filtered"
+
+
+plot(cgr1[,1],cgr1[,2], main=paste("CGR plot of", names(fasta_filtered)[1],sep=''),
+     xlab = "", ylab = "", cex=0.2, pch = 4, frame = TRUE) 
+
+#compare 2 cgr plots
+cgr2 <- cgrplot(4)
+
+library('RColorBrewer')
+pal <- brewer.pal(8,"Dark2")
+par(mfrow=c(1,2))
+
+plot(cgr1[,1],cgr1[,2], main=paste("CGR plot of ", names(fasta_filtered)[1],sep=''),
+     xlab = "", ylab = "", cex.main=0.5, cex=0.4, pch = 4, frame = TRUE) 
+plot(cgr2[,1],cgr2[,2], main=paste("CGR plot of ", names(fasta_filtered)[2],sep=''),
+     xlab = "", ylab = "",cex.main=0.5,cex=0.4,pch = 4, frame = TRUE) 
+
+```
+
+## Create frequency object for sequences 
+
+
+```{r}
+k_mer <- 3  ## define the value of K
+Freq_mat_obj <- list()
+sequence_new <- names(fasta_filtered) 
+
+for(n in 1:length(fasta_filtered)) {   
+  
+  ##skip passing whole data to the function ##increase speed  ## "fasta_filtered" name is fixed
+  
+  Freq_mat_obj[[n]] <- cgat(k_mer,n, len_trim) # executing one seq at a time    #k-mer,seq_length,trimmed_length
+  print(paste("processing sequence : ",n , sequence_new[n], sep=" "))
+  
+}
+
+names(Freq_mat_obj) <- sequence_new
+```
+
+## Calculate distances 
+
+
+```{r}
+j <- length(sequence_new)
+
+distance <- matrix(0,j,j)  ## defining the empty matrix from distance calculations
+row.names(distance) <- sequence_new[1:j]
+colnames(distance) <- sequence_new[1:j]
+
+for(n in 1:j) { 
+  for(cr in 1:j) {
+distance[n,cr] <- matrixDistance(Freq_mat_obj[[n]],Freq_mat_obj[[cr]],distance_type ='Euclidean' )  ##'Euclidean','S_Euclidean' and Manhattan
+}}
+
+distance <- round(distance, 5)
+distance[1:5,1:3]
+
+#plot(hclust(as.dist(distance)))
+
+```
+
+## Save distance matrix into mega or phylip format 
+
+```{r}
+Mega_file_name <- paste('Recombi_N_filtering_',N_filter,'_mega_distance_file_for_k_',k_mer,'.meg')
+
+### save 
+saveMegaDistance(Mega_file_name, distance) ## inputs are file name (with path) and distance 
+
+PhylipFile_name <- paste('Phylip_N_filtering_',N_filter,'distances_k_',k_mer,'.txt')
+
+ ## inputs are file name (with path) and distance 
+savePhylipDistance(PhylipFile_name, distance, mode= 'original')  ## relaxed or original/other
+
+##typical phylip allows 10 charcter for texa name ##new relaxed formart allows 250
+## http://www.phylo.org/index.php/help/relaxed_phylip
+
+```
+
+#### Integrating with other visualization tools (e.g ape and treeio )
+
+
+```{r}
+library(ape)
+
+my_nj <- ape::nj(distance)
+plot(my_nj)
+plot(my_nj,type = "cladogram")
+
+bs<-boot.phylo(my_nj, distance, nj, quiet = TRUE)
+plot(bs)
+nodelabels(bs)
+
+my_nj$node.label<-bs
+write.tree(my_nj,"njwithbs.tree.nwk")
+
+
+foo <- function() {
+col <- "green"
+for (i in 1:2)
+axis(i, col = col, col.ticks = col, col.axis = col, las = 1)
+box(lty = "19")
+}
+
+mytr <- my_nj
+#layout(matrix(1:4, 2, 2, byrow = TRUE))
+plot(mytr); foo()
+plot(mytr, "c", FALSE); foo()
+plot(mytr, "u"); foo()
+par(xpd = TRUE)
+plot(mytr, "f"); foo()
+box("outer")
+
+
+#layout(matrix(1:4, 2, 2))
+#par(las = 1)
+plot(mytr, "u"); foo()
+plot(mytr, "u", FALSE); foo()
+plot(mytr, "f"); foo()
+plot(mytr, "f", FALSE); foo()
+
+```
+
+#### write/read  tree  (Newick and Nexus format )
+
+```{r}
+tree <-write.tree(my_nj, file = "", append = FALSE, digits = 10, tree.names = FALSE)
+
+ape::write.tree(my_nj, file=paste('Newick_NJ_tree_k',k_mer,'.txt', sep='')) #for Newick format #write out trees in a text file
+ape::write.nexus(my_nj, file=paste('Nexus_NJ_tree_k',k_mer,'.txt', sep='')) ##for Nexus format
+
+
+## reading tree from file 
+ #newick.tree <- ape::read.tree("Newick_NJ_tree.txt")  
+ #nexus.tree <- ape::read.nexus("Nexus_NJ_tree.nex")
+
+
+```
+
+#### integration with treeio    
+
+```{r}
+# ## BiocManager::install("treeio") #install treeio, if not installed
+# 
+# library('treeio')
+# 
+#  newick.tree <- treeio::read.newick("Newick_NJ_tree.txt")
+#  newick.tree
+#  nexus.tree <-treeio::read.nexus("Newick_NJ_tree.nex")
+#  nexus.tree
+#  
+# phylo <- as.phylo( newick.tree)
+# phylo
+# test <- as.treedata( newick.tree, boot = NULL)
+# 
+# 
+# file <- system.file(".", "Newick_NJ_tree.nex", package="treeio")
+# #beast <- read.nexus(file)
+# bea
+# 
+# 
+# ggtree(test, color="firebrick", size=2, linetype="dotted")
+# ggtree(test, branch.length="none")
+
+##########################
+# library("ggtree")
+# ggplot(my_nj, aes(x, y)) + geom_tree() + theme_tree()
+
+
+##Rerooting tree
+# library(tidyverse)
+# #BiocManager::install("ggtree")
+# library(ggtree)
+# # build a ggplot with a geom_tree
+# ggplot(tree) + geom_tree() + theme_tree()
+# 
+# # This is convenient shorthand
+# ggtree(as.data.frame(distance))
+
+```
+
+
+
