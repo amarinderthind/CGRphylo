@@ -34,8 +34,9 @@ The DNA sequences to be analyzed can be uploaded in the form fasta file. All the
 setwd(".")
 source('cgat_function.r')
 source('distances_n_other.r')
+source('cgrplot.r')
 
-file <- "recom_3.fasta"
+file <- "test.fasta"
 
 library("seqinr")
 fastafile <- seqinr::read.fasta(file = file, seqtype = "DNA", as.string = TRUE, set.attributes = FALSE)
