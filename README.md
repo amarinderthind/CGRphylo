@@ -36,7 +36,7 @@ source('cgat_function.r')
 source('distances_n_other.r')
 source('cgrplot.r')
 
-file <- "test.fasta"
+file <- "Input_recom_SARS_cov2.fasta"
 
 library("seqinr")
 fastafile <- seqinr::read.fasta(file = file, seqtype = "DNA", as.string = TRUE, set.attributes = FALSE)
