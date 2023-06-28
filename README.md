@@ -1,19 +1,19 @@
-# CGRphylo Pipeline: Chaos Game Representation for phylogeny
+# CGRphylo Pipeline: Chaos Game Representation for Phylogeny
 
-A CGRphylo pipeline combines the R core module with various packages to compare multiple whole genome sequences using Chaos Game Representation (CGR). CRG core function creates the frequencies object for each sequence which can be used to calculate distances among sequences. Later, CGR-based distance matrices can be converted to a phylogeny tree using neighbour-joining (NJ) or other methods. A major advantage of the CGRphylo R pipeline is its ability to handle large DNA sequences (per a user machine) and its effectiveness at classifying very similar sequences.
+A CGRphylo pipeline combines the R core module with various packages to compare multiple whole genome sequences using Chaos Game Representation (CGR). CRG core function creates the frequencies object for each sequence which can be used to calculate distances among sequences. Later, CGR-based distance matrices can be converted to a phylogeny tree using neighbor-joining (NJ) or other methods. A major advantage of the CGRphylo R pipeline is its ability to handle large DNA sequences (per a user machine) and its effectiveness at classifying very similar sequences.
 
 ### How to start
 Line-to-line Rscript is available in cgrPhlyo.r (and CGRphylo.rmd) script. You can find out what to aspect in the o/p by following cgrPhlyo.pdf (or CGRphylo.html).
 
 ### Background
-Chaos Game Representation (CGR) is an iterative mapping technique to construct a two dimensional representation of genomic sequences (Jeffrey, 1990). CGRs have been conventionally used to visualize the large nucleotide sequences. However, apart from visualization, CGRs can be used to compare DNA sequences, construct cladograms and address various biological problems. It effectively classify very similar sequences (e.g., sub-subtypes of HIV-1 sequences) and deliver better resolved classification trees when compared to standard Maximum Likelihood methods. 
+Chaos Game Representation (CGR) is an iterative mapping technique to construct a two-dimensional representation of genomic sequences (Jeffrey, 1990). CGRs have been conventionally used to visualize large nucleotide sequences. However, apart from visualization, CGRs can be used to compare DNA sequences, construct cladograms and address various biological problems. It effectively classifies very similar sequences (e.g., sub-subtypes of HIV-1 sequences) and delivers better-resolved classification trees when compared to standard Maximum Likelihood methods. 
 
-It efficiently classifies sequences based on both inter-species and intra-species variation in a computationally less intense manner. It analyses whole genome variations using an alignment free and scale invariant method resulting in trees that can be used to interpret similarity between multiple whole genome sequences, even when they are closely related.
+It efficiently classifies sequences based on both inter-species and intra-species variation in a computationally less intense manner. It analyses whole genome variations using an alignment-free and scale-invariant method resulting in trees that can be used to interpret similarity between multiple whole genome sequences, even when they are closely related.
 
 ###
 ![figure1](https://user-images.githubusercontent.com/45668229/195962013-fef235d1-6987-4b98-bab9-7d6083f01e5e.png)
 
- Word Frequency is a frequencies of all different k-letter words corresponding to CGR map. Following figure shows various K-letter words (above) and their calculated frequencies (below) at k=3 
+ Word Frequency is the frequency of all different k-letter words corresponding to the CGR map. The following figure shows various K-letter words (above) and their calculated frequencies (below) at k=3 
  
  <p align="center">
  <img src="https://user-images.githubusercontent.com/45668229/186616875-97dcc3aa-0d9d-4f1b-a0f9-4db0f96f8390.png"  width="45%" height="400">&nbsp; &nbsp; &nbsp; &nbsp;
@@ -22,13 +22,13 @@ It efficiently classifies sequences based on both inter-species and intra-specie
 
 ##### Steps of the pipeline
 
-Input required is a set of two or more genome sequences in FASTA format. The other input required by user is “word length (K value)” for which the frequencies of all the words in the sequences are calculated. User can also specify the Out-group for construction of Neighbor Joining Tree. 
+Input required is a set of two or more genome sequences in FASTA format. The other input required by the user is “word length (K value)” for which the frequencies of all the words in the sequences are calculated. Users can also specify the Out-group for the construction of the Neighbor-Joining Tree. 
 
-These Sequences are then used to calculate frequencies of words at user specified word length. , each sequence gets it's own frequency matrices. There is also an option to visualize the CGR plots. Based on these word frequencies the pair-wise distance (Euclidean-default,or  Square euclidean or Manhattan) is calculated between all pairs of sequences in input data. Package integrate other packages where distance matrices can be converted to NJ tree or other and visualized. We provide the option to convert distance matrix into MEGA and phylip distance formats, which is widely used program for visualization. 
+These Sequences are then used to calculate frequencies of words at user-specified word lengths. , each sequence gets its own frequency matrices. There is also an option to visualize the CGR plots. Based on these word frequencies the pair-wise distance (Euclidean-default, or  Square Euclidean, or Manhattan) is calculated between all pairs of sequences in input data. Package integrate other packages where distance matrices can be converted to NJ tree or other and visualized. We provide the option to convert distance matrix into MEGA and phylip distance formats, which is a widely used program for visualization. 
 
 ##### Input file requirements
 
-The DNA sequences to be analyzed can be uploaded in the form fasta file. All the sequences must be in FASTA format. Check the example file for details.  
+The DNA sequences to be analyzed can be uploaded in the form fasta file. All the sequences must be in FASTA format. Check the example file (Input_recom_SARS_cov2.fasta) for details.  
 
 ```
 setwd(".")
@@ -55,7 +55,7 @@ seqinr::write.fasta(sequences=fasta_filtered,names =names(fasta_filtered),file.o
 
 ##### Sequence length and GC content /Meta info
 
-`create_meta` function extract various types of information from the sequences and store into dataframe. 
+`create_meta` function extracts various types of information from the sequences and stores them into data frame. 
 
 ```
 meta <- create_meta(fastafile, N_filter) ## create seq features information
@@ -78,7 +78,7 @@ dotchart(meta$GC_content, labels = meta$name, xlab = "GC content", pch = 21, bg 
 </p>
 
 ```
-## box plot for each strains (In this example first part of the name is strain name)
+## box plot for each strain (In this example the first part of the name is strain name)
 
 meta$strains <- as.character(lapply(meta$name, function(x) strsplit(x, '_')[[1]][1])) ## split strains names
 
@@ -106,7 +106,7 @@ cgr1 <- cgrplot(1) ## enter the number of sequence from  "fasta_filtered"
 plot(cgr1[,1],cgr1[,2], main=paste("CGR plot of", names(fasta_filtered)[1],sep=''),
      xlab = "", ylab = "", cex=0.2, pch = 4, frame = TRUE) 
 
-#compare 2 cgr plots
+#compare 2 CGR plots
 cgr2 <- cgrplot(4)
 
 library('RColorBrewer')
@@ -122,7 +122,7 @@ plot(cgr2[,1],cgr2[,2], main=paste("CGR plot of ", names(fasta_filtered)[2],sep=
 ![CGR_2plots](https://user-images.githubusercontent.com/45668229/196325788-e054df7d-2689-4e77-89c7-53c9f6797a6c.png)
 
 ##### Create frequency object for sequences for specific "Word Length"
-The clustering of the sequences is based on the distances calculated from the frequencies of DNA words. The word length to be used for the calculation can be specified. This default word length used is 6.  `cgat` function do this job.
+The clustering of the sequences is based on the distances calculated from the frequencies of DNA words. The word length to be used for the calculation can be specified. This default word length used is 6.  `cgat` function does this job.
 
 ```
 k_mer <- 6  ## define the value of K
@@ -141,7 +141,7 @@ for(n in 1:length(fasta_filtered)) {
 names(Freq_mat_obj) <- sequence_new
 ```
 ## Calculate distances 
-User can use any of Euclidean (default),or  Square euclidean or Manhattan distance for the distance matrices. `matrixDistance` function takes inputs in following way for distance calculations.
+Users can use any of Euclidean (default), Square Euclidean, or Manhattan distance for the distance matrices. `matrixDistance` function takes inputs in the following way for distance calculations.
 
 ```
 j <- length(sequence_new)
@@ -160,9 +160,9 @@ distance[1:5,1:3]
 
 #plot(hclust(as.dist(distance)))
 ```
-###  Saving Results in different output formats (mega, phylip, newick, Nexus)
+###  Saving Results in different output formats (mega, phylip, Newick, Nexus)
 
-For tree visulization with third party tools, results can be saved into mega or phylip format using `saveMegaDistance` and `savePhylipDistance` respectively.
+For tree visualization with third-party tools, results can be saved into mega or phylip format using `saveMegaDistance` and `savePhylipDistance` respectively.
 
 ```
 Mega_file_name <- paste('Recombi_N_filtering_',N_filter,'_mega_distance_file_for_k_',k_mer,'.meg')
@@ -179,14 +179,14 @@ savePhylipDistance(PhylipFile_name, distance, mode= 'original')  ## relaxed or o
 ## http://www.phylo.org/index.php/help/relaxed_phylip
 ```
 
-Distance Matrix (as shown below) contains pairwise distance matrix generated using input sequences. By default CGRphylo use Euclidean distance method to calculate pairwise distances between multiple whole genome sequences.
+Distance Matrix (as shown below) contains a pairwise distance matrix generated using input sequences. By default, CGRphylo uses the Euclidean distance method to calculate pairwise distances between multiple whole genome sequences.
 
 
 ![tt](https://user-images.githubusercontent.com/45668229/195969269-dd01ab1c-d94b-4e52-9abc-bb8c14474524.png)
 
-Creating and Saving tree into newick, Nexus format (pipeline use `ape` and `treeio` Bioconductor package)
+Creating and Saving tree into Newick, Nexus format (pipeline use `ape` and `treeio` Bioconductor package)
 
-Outtree,  users can save outtree files created by NJ method of Bioconductor package 'ape'. These files contains information about trees generated in standard NEWICK format or other. These files are compatible with standard bioinformatics tools like TreeView , MEGA etc. to create, view , edit and customize trees. 
+Outtree,  users can save outtree files created by the NJ method of Bioconductor package 'ape'. These files contain information about trees generated in standard NEWICK format or other. These files are compatible with standard bioinformatics tools like TreeView, MEGA, etc. to create, view, edit, and customize trees. 
 
 ```
 tree <-write.tree(my_nj, file = "", append = FALSE, digits = 10, tree.names = FALSE)
@@ -200,7 +200,7 @@ ape::write.nexus(my_nj, file='Nexus_NJ_tree.nex') ##for Nexus format
  nexus.tree <- ape::read.nexus("Nexus_NJ_tree.nex")
 ```
 
-Following tree is created this pipeline and later modified/label using mega software. 
+The following tree is created in this pipeline and later modified/labeled using mega software. 
 
  <p align="center">
 <img src="https://user-images.githubusercontent.com/45668229/195969475-b84d614e-e43d-4e67-ba25-416a5a102f44.png" width=46% height=400>&nbsp; &nbsp; &nbsp; &nbsp;
