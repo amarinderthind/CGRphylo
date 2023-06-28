@@ -92,8 +92,7 @@ len_trim <- min(meta$length)
 #write.csv(meta,paste("length_and_names",N_filter,".csv"))
 ```
  
-<img src="https://user-images.githubusercontent.com/45668229/196326195-f5a3172d-78f1-4bc8-a225-51d80a993834.png" width="1000" height="400">
-
+<img src="https://github.com/amarinderthind/CGRphylo/assets/45668229/1cd61221-5475-4740-8296-b18b8246cd9e.png" width="1000" height="400">
 
 ##### Visualization of CGR plot
 CGRs for each sequence can be visualized by selecting the sequence. `cgrplot` function creates the 'x' and 'y' cordinates for each base pair (to plot on CRG plot).
