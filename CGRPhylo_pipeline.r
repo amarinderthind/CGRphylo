@@ -3,7 +3,7 @@
 #############################
 
 setwd("./")
-file <- "example.fasta"
+file <- "Input_recom_SARS_cov2.fasta"
 
 library("seqinr")
 fastafile <- seqinr::read.fasta(file = file, seqtype = "DNA", as.string = TRUE, set.attributes = FALSE)
