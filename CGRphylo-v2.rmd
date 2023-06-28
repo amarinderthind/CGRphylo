@@ -1,5 +1,5 @@
 ---
-title: 'CGRPhylo Pipeline: Chaos Game Representation for phylogeny'
+title: 'CGRPhylo Pipeline: Chaos Game Representation for Phylogeny'
 author: Amarinder Singh Thind
 output:
   html_document: default
@@ -12,7 +12,7 @@ require("knitr")
 opts_knit$set(root.dir = ".")
 ```
 
-## Setting working directory, loading source and input files
+## Setting working directory, loading source, and input files
 
 ```{r}
 
@@ -31,7 +31,7 @@ fastafile <- seqinr::read.fasta(file = file, seqtype = "DNA", as.string = TRUE, 
 ```
 
 
-## Filtering of the sequencing with specified number of 'N'  bases
+## Filtering of the sequencing with a specified number of 'N'  bases
 
 
 ```{r}
@@ -44,7 +44,7 @@ fasta_filtered <- fastafile_new(fastafile, N_filter) ## create filtered sequence
 #seqinr::write.fasta(sequences=fasta_filtered,names =names(fasta_filtered),file.out=paste("Sep-2022-manuscript/recombinant_XBB.1/Filter",N_filter,"bJ.1.v2.fasta",sep = ''))
 ```
 
-## Create Meta info from sequence 
+## Create Meta info from the sequence 
 
 ```{r} 
 meta <- create_meta(fastafile, N_filter) ## create seq features information
@@ -73,7 +73,7 @@ ggplot(meta, aes(x = strains, y =GC_content, color = strains )) + geom_boxplot()
 
 len_trim <- min(meta$length)
 
-####### Save meta data into file
+####### Save metadata into a file
 #write.csv(meta,paste("length_and_names",N_filter,".csv"))
 ```
 
@@ -87,7 +87,7 @@ cgr1 <- cgrplot(1) ## enter the number of sequence from  "fasta_filtered"
 plot(cgr1[,1],cgr1[,2], main=paste("CGR plot of", names(fasta_filtered)[1],sep=''),
      xlab = "", ylab = "", cex=0.2, pch = 4, frame = TRUE) 
 
-#compare 2 cgr plots
+#compare 2 CGR plots
 cgr2 <- cgrplot(4)
 
 library('RColorBrewer')
