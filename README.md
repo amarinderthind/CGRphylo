@@ -130,7 +130,7 @@ sequence_new <- names(fasta_filtered)
 
 for(n in 1:length(fasta_filtered)) {   
   
-  ##skip passing whole data to the function ##increase speed  ## "fasta_filtered" name is fixed
+  ##skip passing whole data to the function ##increase speed  ## "fasta_filtered" name is Locked.
   
   Freq_mat_obj[[n]] <- cgat(k_mer,n, len_trim) # executing one seq at a time    #k-mer,seq_length,trimmed_length
   print(paste("processing sequence : ",n , sequence_new[n], sep=" "))
