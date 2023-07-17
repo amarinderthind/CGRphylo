@@ -8,9 +8,9 @@ file <- "Input_recom_SARS_cov2.fasta"
 library("seqinr")
 fastafile <- seqinr::read.fasta(file = file, seqtype = "DNA", as.string = TRUE, set.attributes = FALSE)
 
-source('cgat_function.r') 
-source('distances.r')
-
+source('cgat_function.r')
+source('distances_n_other.r')
+source('cgrplot.r')
 
 ##########################################################################
 ######## Filtering of the sequencing with a specified number of 'N'  bases
