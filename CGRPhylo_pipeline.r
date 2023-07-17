@@ -16,30 +16,13 @@ source('cgrplot.r')
 ######## Filtering of the sequencing with a specified number of 'N'  bases
 ##########################################################################
 
-library(stringr) ##for str_count
+library(stringr)
 
-sequence <- names(fastafile) ##substr(names(fastafile),1,12)
-N_filter <- 50
-n_new <- 1
-fastafile_new <- list() 
-sequence_new <- vector()
-length_n <- list()
+N_filter <- 50  ## filter sequence with n bases > this value
+fasta_filtered <- fastafile_new(fastafile, N_filter) ## create filtered sequence file using fastafile_new function
 
-for(n in 1:length(fastafile)) {   
-  
-  if(str_count(fastafile[[n]], "n")<=N_filter){
-    
-    fastafile_new[[n_new]] <- fastafile[[n]] 
-    sequence_new[n_new] <- sequence[n]  
-    print(paste("processing sequence : ",sequence[n],"Total length of the sequence : ",nchar(fastafile[[n]]), sep=" "))
-    print(paste(" A: ",str_count(fastafile[[n]], "a")," N: ",str_count(fastafile[[n]], "n")," G: ",str_count(fastafile[[n]], "g"), " C: ",str_count(fastafile[[n]], "c"),sep=" "))
-    
-    length_n[n_new] <- nchar(fastafile[[n]])
-    n_new <- n_new+1
-    
-  }else{ print(paste("Filtering ",sequence[n]), sep = '\t')}
-}
-names(fastafile_new) <- sequence_new
+#write fasta file from filtered sequences
+seqinr::write.fasta(sequences=fasta_filtered,names =names(fasta_filtered),file.out=paste("recombinant_XBB.1_Filter",N_filter,".fasta",sep = ''))
 
 #write fasta file from filtered sequences
 #seqinr::write.fasta(sequences=fastafile_new,names =sequence_new,file.out =paste("Filtered_N",N_filter,"_new_seq.fasta",sep = ''))
