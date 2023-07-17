@@ -13,7 +13,7 @@ source('distances.r')
 
 
 ##########################################################################
-######## Filtering of the sequencing with specified number of 'N'  bases
+######## Filtering of the sequencing with a specified number of 'N'  bases
 ##########################################################################
 
 library(stringr) ##for str_count
@@ -57,7 +57,7 @@ source('cgat_function.r')
 
 for(n in 1:length(fastafile_new)) {   
   
-  ##skip passing whole data to the function ##increase speed  ## "fastafile_new" name is fixed 
+  ##skip passing whole data to the function ##increase speed  ## "fastafile_new" name is Locked 
   Freq_mat_obj[[n]] <- cgat(k_mer,n, nchar(fastafile[[n]])) # executing one seq at a time #k-mer,seq_length,trimmed_length
   print(paste("processing sequence : ",n , sequence_new[n], sep=" "))
   
