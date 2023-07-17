@@ -77,8 +77,10 @@ dotchart(meta$GC_content, labels = meta$name, xlab = "GC content", pch = 21, bg 
  
 </p>
 
-## box plot for each strain (In this example the first part (before _ ) of the sequence name is strain name). 
+## Box plot for each strain 
 ```
+# In this example the first part of the sequence name {i.e. beforere_ } is the strain name.
+
 meta$strains <- as.character(lapply(meta$name, function(x) strsplit(x, '_')[[1]][1])) ## split strains names
 
 library(ggplot2)
@@ -94,7 +96,7 @@ len_trim <- min(meta$length)
 <img src="https://github.com/amarinderthind/CGRphylo/assets/45668229/1cd61221-5475-4740-8296-b18b8246cd9e.png" width="1000" height="400">
 
 ##### Visualization of CGR plot
-CGRs for each sequence can be visualized by selecting the sequence. `cgrplot` function creates the 'x' and 'y' cordinates for each base pair (to plot on CRG plot).
+CGRs for each sequence can be visualized by selecting the sequence. `cgrplot` function creates the 'x' and 'y' coordinates for each base pair (to plot on CRG plot).
 
 ```
 source('cgrplot.r') ## Load CGR plot function
@@ -159,9 +161,9 @@ distance[1:5,1:3]
 
 #plot(hclust(as.dist(distance)))
 ```
-###  Saving Results in different output formats (mega, phylip, Newick, Nexus)
+###  Saving Results in different output formats (Mega, Phylip, Newick, Nexus)
 
-For tree visualization with third-party tools, results can be saved into mega or phylip format using `saveMegaDistance` and `savePhylipDistance` respectively.
+For tree visualization with third-party tools, results can be saved into Mega or Phylip format using `saveMegaDistance` and `savePhylipDistance` respectively.
 
 ```
 Mega_file_name <- paste('Recombi_N_filtering_',N_filter,'_mega_distance_file_for_k_',k_mer,'.meg')
@@ -199,7 +201,7 @@ ape::write.nexus(my_nj, file='Nexus_NJ_tree.nex') ##for Nexus format
  nexus.tree <- ape::read.nexus("Nexus_NJ_tree.nex")
 ```
 
-The following tree is created in this pipeline and later modified/labeled using mega software. 
+The following tree is created in this pipeline and later modified/labelled using mega software. 
 
  <p align="center">
 <img src="https://user-images.githubusercontent.com/45668229/195969475-b84d614e-e43d-4e67-ba25-416a5a102f44.png" width=46% height=400>&nbsp; &nbsp; &nbsp; &nbsp;
