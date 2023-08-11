@@ -25,6 +25,11 @@ It efficiently classifies sequences based on both inter-species and intra-specie
 
 Another fascinating property of the CGR plot is its fractal nature. The iterative process of plotting points on the CGR plot creates intricate and self-similar patterns at different scales. This means that each square box in the plot contains a smaller version of the entire plot, exhibiting similarity to the overall pattern. This characteristic of self-replication is typical of fractals, complex geometric structures that reveal repeating patterns at various levels of magnification.
 
+<p align="center">
+ 
+<img src="https://github.com/amarinderthind/CGRphylo/assets/45668229/3de4ad69-6c9b-4958-aaa5-98d12d2dae5d.png"  width="60%" height="400">
+</p>
+
 
 
 ##### Steps of the pipeline
