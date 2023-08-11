@@ -23,6 +23,10 @@ It efficiently classifies sequences based on both inter-species and intra-specie
 <img src="https://user-images.githubusercontent.com/45668229/186616980-55dcef85-6164-496f-86c1-add97badadcf.png"  width="45%" height="400">
 </p>
 
+Another fascinating property of the CGR plot is its fractal nature. The iterative process of plotting points on the CGR plot creates intricate and self-similar patterns at different scales. This means that each square box in the plot contains a smaller version of the entire plot, exhibiting similarity to the overall pattern. This characteristic of self-replication is typical of fractals, complex geometric structures that reveal repeating patterns at various levels of magnification.
+
+
+
 ##### Steps of the pipeline
 
 Input required is a set of two or more genome sequences in FASTA format. The other input required by the user is “word length (K value)” for which the frequencies of all the words in the sequences are calculated. Users can also specify the Out-group for the construction of the Neighbor-Joining Tree. 
