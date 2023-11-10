@@ -2,6 +2,9 @@
 
 A CGRphylo pipeline combines the R core module with various packages to compare multiple whole genome sequences using Chaos Game Representation (CGR). CRG core function creates the frequencies object for each sequence which can be used to calculate distances among sequences. Later, CGR-based distance matrices can be converted to a phylogeny tree using neighbour-joining (NJ) or other methods. A major advantage of the CGRphylo R pipeline is its ability to handle large DNA sequences (per a user machine) and its effectiveness at classifying very similar sequences.
 
+## Cite this pipeline as:
+Thind Singh Amarinder and Sinha Somdatta*, Using Chaos-Game-Representation for Analysing the SARS-CoV-2 Lineages, Newly Emerging Strains and Recombinants, Current Genomics 2023; 24 (3) . https://dx.doi.org/10.2174/0113892029264990231013112156
+
 ## Acknowledgment 
 We acknowledge the National Network for Mathematical and Computational Biology (NNMCB), DST, India for the internship programme at IISER Mohali for the initial part of the project.
 
