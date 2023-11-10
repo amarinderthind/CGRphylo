@@ -13,7 +13,7 @@ Thind Singh Amarinder and Sinha Somdatta*, Using Chaos-Game-Representation for A
 Line-to-line Rscript is available in cgrPhlyo.r (and CGRphylo.rmd) script. You can find out what to aspect in the o/p by following cgrPhlyo.pdf (or CGRphylo.html).
 
 ### Background
-Chaos Game Representation (CGR) is an iterative mapping technique to construct a two-dimensional representation of genomic sequences (Jeffrey, 1990). CGRs have been conventionally used to visualize large nucleotide sequences. However, apart from visualization, CGRs can be used to compare DNA sequences, construct cladograms and address various biological problems. It effectively classifies very similar sequences (e.g., sub-subtypes of HIV-1 sequences) and delivers better-resolved classification trees when compared to standard Maximum Likelihood methods. 
+Chaos Game Representation (CGR) is an iterative mapping technique to construct a two-dimensional representation of genomic sequences (Jeffrey, 1990). CGRs have been conventionally used to visualize large nucleotide sequences. However, apart from visualization, CGRs can be used to compare DNA sequences, construct cladograms and address various biological problems.  
 
 It efficiently classifies sequences based on both inter-species and intra-species variation in a computationally less intense manner. It analyses whole genome variations using an alignment-free and scale-invariant method resulting in trees that can be used to interpret similarity between multiple whole genome sequences, even when they are closely related.
 
