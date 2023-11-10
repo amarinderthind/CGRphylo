@@ -9,7 +9,7 @@ We assessed the computational efficiency of CGRphylo against Clustal-Omega for m
 ## Cite this pipeline as:
 Thind Singh Amarinder and Sinha Somdatta*, Using Chaos-Game-Representation for Analysing the SARS-CoV-2 Lineages, Newly Emerging Strains and Recombinants, Current Genomics 2023; 24 (3) . https://dx.doi.org/10.2174/0113892029264990231013112156
 
-### How to start
+### How to start (Check section, Input file requirements)
 Line-to-line Rscript is available in cgrPhlyo.r (and CGRphylo.rmd) script. You can find out what to aspect in the o/p by following cgrPhlyo.pdf (or CGRphylo.html).
 
 ### Background
@@ -225,10 +225,12 @@ ape::write.nexus(my_nj, file='Nexus_NJ_tree.nex') ##for Nexus format
 <img src="https://github.com/amarinderthind/CGRphylo/assets/45668229/ce91a57b-4adf-4b53-a6a5-d009f8b56443.png" width=86% height=700>&nbsp; &nbsp; 
 </p>
 
-## Acknowledgment 
-We acknowledge the National Network for Mathematical and Computational Biology (NNMCB), DST, India for the internship programme at IISER Mohali for the initial part of the project.
+
 
 ### Fig Cladogram of 8 different strains of SARS Cov-2 using - (A) k=4, (B) k=5, (C) k=6, (D) k=7, (E) Multiple sequence alignment (MSA) and NJ clustering, and (F) MSA-Maximum likelihood method.
  <p align="center">
 <img src="https://github.com/amarinderthind/CGRphylo/assets/45668229/3fe36df9-bbec-4184-b6e7-3172e4e1b7bf.png" width=86% height=700>
  </p>
+
+ ## Acknowledgment 
+We acknowledge the National Network for Mathematical and Computational Biology (NNMCB), DST, India for the internship programme at IISER Mohali for the initial part of the project.
