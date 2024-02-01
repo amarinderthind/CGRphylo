@@ -12,30 +12,6 @@ Thind Singh Amarinder and Sinha Somdatta*, Using Chaos-Game-Representation for A
 ### How to start (Check section, Input file requirements)
 Line-to-line Rscript is available in cgrPhlyo.r (and CGRphylo.rmd) script. You can find out what to aspect in the o/p by following cgrPhlyo.pdf (or CGRphylo.html).
 
-### Background
-Chaos Game Representation (CGR) is an iterative mapping technique to construct a two-dimensional representation of genomic sequences (Jeffrey, 1990). CGRs have been conventionally used to visualize large nucleotide sequences. However, apart from visualization, CGRs can be used to compare DNA sequences, construct cladograms and address various biological problems.  
-
-It efficiently classifies sequences based on both inter-species and intra-species variation in a computationally less intense manner. It analyses whole genome variations using an alignment-free and scale-invariant method resulting in trees that can be used to interpret similarity between multiple whole genome sequences, even when they are closely related.
-
-###
-![figure1](https://user-images.githubusercontent.com/45668229/195962013-fef235d1-6987-4b98-bab9-7d6083f01e5e.png)
-
- Word Frequency is the frequency of all different k-letter words corresponding to the CGR map. The following figure shows various K-letter words (above) and their calculated frequencies (below) at k=3 
- 
- <p align="center">
- <img src="https://user-images.githubusercontent.com/45668229/186616875-97dcc3aa-0d9d-4f1b-a0f9-4db0f96f8390.png"  width="45%" height="400">&nbsp; &nbsp; &nbsp; &nbsp;
-<img src="https://user-images.githubusercontent.com/45668229/186616980-55dcef85-6164-496f-86c1-add97badadcf.png"  width="45%" height="400">
-</p>
-
-Another fascinating property of the CGR plot is its fractal nature. The iterative process of plotting points on the CGR plot creates intricate and self-similar patterns at different scales. This means that each square box in the plot contains a smaller version of the entire plot, exhibiting similarity to the overall pattern. This characteristic of self-replication is typical of fractals, complex geometric structures that reveal repeating patterns at various levels of magnification.
-
-<p align="center">
- 
-<img src="https://github.com/amarinderthind/CGRphylo/assets/45668229/3de4ad69-6c9b-4958-aaa5-98d12d2dae5d.png"  width="60%" height="400">
-</p>
-
-
-
 ##### Steps of the pipeline
 
 Input required is a set of two or more genome sequences in FASTA format. The other input required by the user is “word length (K value)” for which the frequencies of all the words in the sequences are calculated. Users can also specify the Out-group for the construction of the Neighbor-Joining Tree. 
@@ -231,6 +207,29 @@ ape::write.nexus(my_nj, file='Nexus_NJ_tree.nex') ##for Nexus format
  <p align="center">
 <img src="https://github.com/amarinderthind/CGRphylo/assets/45668229/3fe36df9-bbec-4184-b6e7-3172e4e1b7bf.png" width=86% height=700>
  </p>
+
+
+### Background
+Chaos Game Representation (CGR) is an iterative mapping technique to construct a two-dimensional representation of genomic sequences (Jeffrey, 1990). CGRs have been conventionally used to visualize large nucleotide sequences. However, apart from visualization, CGRs can be used to compare DNA sequences, construct cladograms and address various biological problems.  
+
+It efficiently classifies sequences based on both inter-species and intra-species variation in a computationally less intense manner. It analyses whole genome variations using an alignment-free and scale-invariant method resulting in trees that can be used to interpret similarity between multiple whole genome sequences, even when they are closely related.
+
+###
+![figure1](https://user-images.githubusercontent.com/45668229/195962013-fef235d1-6987-4b98-bab9-7d6083f01e5e.png)
+
+ Word Frequency is the frequency of all different k-letter words corresponding to the CGR map. The following figure shows various K-letter words (above) and their calculated frequencies (below) at k=3 
+ 
+ <p align="center">
+ <img src="https://user-images.githubusercontent.com/45668229/186616875-97dcc3aa-0d9d-4f1b-a0f9-4db0f96f8390.png"  width="45%" height="400">&nbsp; &nbsp; &nbsp; &nbsp;
+<img src="https://user-images.githubusercontent.com/45668229/186616980-55dcef85-6164-496f-86c1-add97badadcf.png"  width="45%" height="400">
+</p>
+
+Another fascinating property of the CGR plot is its fractal nature. The iterative process of plotting points on the CGR plot creates intricate and self-similar patterns at different scales. This means that each square box in the plot contains a smaller version of the entire plot, exhibiting similarity to the overall pattern. This characteristic of self-replication is typical of fractals, complex geometric structures that reveal repeating patterns at various levels of magnification.
+
+<p align="center">
+ 
+<img src="https://github.com/amarinderthind/CGRphylo/assets/45668229/3de4ad69-6c9b-4958-aaa5-98d12d2dae5d.png"  width="60%" height="400">
+</p>
 
  ## Acknowledgment 
 We acknowledge the National Network for Mathematical and Computational Biology (NNMCB), DST, India for the internship programme at IISER Mohali for the initial part of the project.
