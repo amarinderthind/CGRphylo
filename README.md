@@ -15,7 +15,7 @@ In the world of viral genomics, CGRphylo stands out by accurately classifying cl
 🚀 CGRphylo processed 69 SARS-CoV-2 genomes 5 times faster than Clustal-Omega.
 🌐 But wait, there's more! For a dataset of 106 genomes, CGRphylo outpaced Clustal-Omega by an incredible 13.7 times.
 
-In the world of MSAs (Clustal-Omega), computational costs skyrocket as datasets grow. Not for CGRphylo! Adding a sequence is a breeze – just one frequency matrix calculation, breaking free from the computational intensity that others face.
+In the world of MSAs (Clustal-Omega), computational costs skyrocket as datasets grow. Not for CGRphylo! Adding a sequence is a breeze – just one frequency matrix calculation, breaking free from the computational intensity that others face. For MSA, the computational cost increases as additional sequences require pairwise comparisons with all other sequences, making the process more computationally intensive as the dataset grows. 
 
 ## Cite this pipeline as:
 Thind Singh Amarinder and Sinha Somdatta*, Using Chaos-Game-Representation for Analysing the SARS-CoV-2 Lineages, Newly Emerging Strains and Recombinants, Current Genomics 2023; 24 (3) . https://dx.doi.org/10.2174/0113892029264990231013112156
