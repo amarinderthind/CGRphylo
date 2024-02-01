@@ -4,7 +4,7 @@
 
 ✨ Precision: Nail the classification of closely related viral strains and recombinants.  
 
-✨ Speed: Rapid analysis and classification of massive viral genome datasets.  
+✨ Speed: Rapid analysis and classification of large N viral genome datasets.  
 
 ✨ Needs low-resource settings.  
 
