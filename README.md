@@ -45,7 +45,8 @@ library("seqinr")
 fastafile <- seqinr::read.fasta(file = file, seqtype = "DNA", as.string = TRUE, set.attributes = FALSE)
 ```
 
-##### Filtering and trimming, if required 
+##### Filtering and trimming (Optional but recommended)
+
 ```
 library(stringr)
 
@@ -56,7 +57,10 @@ fasta_filtered <- fastafile_new(fastafile, N_filter) ## create filtered sequence
 seqinr::write.fasta(sequences=fasta_filtered,names =names(fasta_filtered),file.out=paste("recombinant_XBB.1_Filter",N_filter,".fasta",sep = ''))
 ```
 
-##### Sequence length and GC content /Meta info
+####  If not interested in exploring, Box/CGR plots etc; proceed directly for section ##Create frequency object for sequences for specific "Word Length"
+
+
+##### Sequence length and GC content /Meta info (Optional)
 
 `create_meta` function extracts various types of information from the sequences and stores them into data frame. 
 
@@ -80,7 +84,7 @@ dotchart(meta$GC_content, labels = meta$name, xlab = "GC content", pch = 21, bg 
  
 </p>
 
-## Box plot for each strain 
+#### Box plot for each strain (Optional)
 ```
 # In this example the first part of the sequence name {i.e. beforere_ } is the strain name.
 
@@ -98,7 +102,7 @@ len_trim <- min(meta$length)
  
 <img src="https://github.com/amarinderthind/CGRphylo/assets/45668229/1cd61221-5475-4740-8296-b18b8246cd9e.png" width="1000" height="400">
 
-##### Visualization of CGR plot
+#### Visualization of CGR plot (Optional)
 CGRs for each sequence can be visualized by selecting the sequence. `cgrplot` function creates the 'x' and 'y' coordinates for each base pair (to plot on CRG plot).
 
 ```
@@ -125,7 +129,7 @@ plot(cgr2[,1],cgr2[,2], main=paste("CGR plot of ", names(fasta_filtered)[2],sep=
 
 ![CGR_2plots](https://user-images.githubusercontent.com/45668229/196325788-e054df7d-2689-4e77-89c7-53c9f6797a6c.png)
 
-##### Create frequency object for sequences for specific "Word Length"
+### Create frequency object for sequences for specific "Word Length"
 The clustering of the sequences is based on the distances calculated from the frequencies of DNA words. The word length to be used for the calculation can be specified. This default word length used is 6.  `cgat` function does this job.
 
 ```
