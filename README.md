@@ -2,9 +2,11 @@
 
 ## Why CGRphylo?
 
-✨ Precision: Nail the classification of closely related viral strains and recombinants.
-✨ Speed: Rapid analysis and classification of massive viral genome datasets.
-✨ Needs low-resource settings.
+✨ Precision: Nail the classification of closely related viral strains and recombinants.  
+
+✨ Speed: Rapid analysis and classification of massive viral genome datasets.  
+
+✨ Needs low-resource settings.  
 
 In the world of viral genomics, CGRphylo stands out by accurately classifying closely related viral strains, including tricky recombinants. Imagine its power during epidemic outbreaks, where thousands of viral sequences overwhelm resources. CGRphylo is the superhero pipeline that steps in – efficient, accessible, and designed for both high and low-resource settings.
 
@@ -13,7 +15,7 @@ In the world of viral genomics, CGRphylo stands out by accurately classifying cl
 🚀 CGRphylo processed 69 SARS-CoV-2 genomes 5 times faster than Clustal-Omega.
 🌐 But wait, there's more! For a dataset of 106 genomes, CGRphylo outpaced Clustal-Omega by an incredible 13.7 times.
 
-In the world of MSAs, computational costs skyrocket as datasets grow. Not for CGRphylo! Adding a sequence is a breeze – just one frequency matrix calculation, breaking free from the computational intensity that others face.
+In the world of MSAs (Clustal-Omega), computational costs skyrocket as datasets grow. Not for CGRphylo! Adding a sequence is a breeze – just one frequency matrix calculation, breaking free from the computational intensity that others face.
 
 ## Cite this pipeline as:
 Thind Singh Amarinder and Sinha Somdatta*, Using Chaos-Game-Representation for Analysing the SARS-CoV-2 Lineages, Newly Emerging Strains and Recombinants, Current Genomics 2023; 24 (3) . https://dx.doi.org/10.2174/0113892029264990231013112156
