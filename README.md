@@ -18,7 +18,7 @@ In the world of viral genomics, CGRphylo stands out by accurately classifying cl
 In the world of MSAs (Clustal-Omega), computational costs skyrocket as datasets grow. Not for CGRphylo! Adding a sequence is a breeze – just one frequency matrix calculation, breaking free from the computational intensity that others face. For MSA, the computational cost increases as additional sequences require pairwise comparisons with all other sequences, making the process more computationally intensive as the dataset grows. 
 
 ## Cite this pipeline as:
-Thind Singh Amarinder and Sinha Somdatta*, Using Chaos-Game-Representation for Analysing the SARS-CoV-2 Lineages, Newly Emerging Strains and Recombinants, Current Genomics 2023; 24 (3) . https://dx.doi.org/10.2174/0113892029264990231013112156
+Thind Singh Amarinder and Sinha Somdatta*, Using Chaos-Game-Representation for Analysing the SARS-CoV-2 Lineages, Newly Emerging Strains and Recombinants, Current Genomics 2023; 24 (3) . https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10761335/
 
 ### How to start (Check section, Input file requirements)
 Line-to-line Rscript is available in cgrPhlyo.r (and CGRphylo.rmd) script. You can find out what to aspect in the o/p by following cgrPhlyo.pdf (or CGRphylo.html).
