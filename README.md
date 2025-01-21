@@ -1,5 +1,5 @@
 # CGRphylo Pipeline: Chaos Game Representation for Phylogeny
-https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10761335/
+Full article access https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10761335/
 
 ## Why CGRphylo?
 
