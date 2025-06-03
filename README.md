@@ -58,76 +58,6 @@ fasta_filtered <- fastafile_new(fastafile, N_filter) ## create filtered sequence
 seqinr::write.fasta(sequences=fasta_filtered,names =names(fasta_filtered),file.out=paste("recombinant_XBB.1_Filter",N_filter,".fasta",sep = ''))
 ```
 
-####  If not interested in exploring, Box/CGR plots etc; proceed directly for section ##Create frequency object for sequences for specific "Word Length"
-
-
-##### Sequence length and GC content /Meta info (Optional)
-
-`create_meta` function extracts various types of information from the sequences and stores them into data frame. 
-
-```
-meta <- create_meta(fastafile, N_filter) ## create seq features information
-print(paste("std dev for seq length is",sd(meta$length),sep=" "))
-print(paste("Median of the seq length is",median(meta$length),sep=" "))
-print("Range of the seq length")
-range(meta$length)
-
-#boxplot(meta$length, ylab="Sequence length") ## overall
-
-dotchart(meta$length, labels = meta$name, xlab = "Sequence length", pch = 21, bg = "green", pt.cex = 1, cex = 0.7)
-
-dotchart(meta$GC_content, labels = meta$name, xlab = "GC content", pch = 21, bg = "green", pt.cex = 1, cex = 0.7)
-
-```
- <p align="center">
-<img src="https://user-images.githubusercontent.com/45668229/196873578-f08d9bd1-2778-44eb-be0a-f6b5c6bd2470.png" width=45% height="400">&nbsp; &nbsp; &nbsp; &nbsp;
-<img src="https://user-images.githubusercontent.com/45668229/196873233-fc4838ac-3787-446f-9ed3-3a3ab40e756b.png" width=45% height="400">
- 
-</p>
-
-#### Box plot for each strain (Optional)
-```
-# In this example the first part of the sequence name {i.e. beforere_ } is the strain name.
-
-meta$strains <- as.character(lapply(meta$name, function(x) strsplit(x, '_')[[1]][1])) ## split strains names
-
-library(ggplot2)
-ggplot(meta, aes(x = strains, y =length, color = strains )) + geom_boxplot()+ ylab("Sequence length (group level)")+coord_flip() 
-
-#boxplot(log2(meta$length+1))
-len_trim <- min(meta$length)
-
-## Save meta
-#write.csv(meta,paste("length_and_names",N_filter,".csv"))
-```
- 
-<img src="https://github.com/amarinderthind/CGRphylo/assets/45668229/1cd61221-5475-4740-8296-b18b8246cd9e.png" width="1000" height="400">
-
-#### Visualization of CGR plot (Optional)
-CGRs for each sequence can be visualized by selecting the sequence. `cgrplot` function creates the 'x' and 'y' coordinates for each base pair (to plot on CRG plot).
-
-```
-source('cgrplot.r') ## Load CGR plot function
-
-cgr1 <- cgrplot(1) ## enter the number of sequence from  "fasta_filtered"
-
-
-plot(cgr1[,1],cgr1[,2], main=paste("CGR plot of", names(fasta_filtered)[1],sep=''),
-     xlab = "", ylab = "", cex=0.2, pch = 4, frame = TRUE) 
-
-#compare 2 CGR plots
-cgr2 <- cgrplot(4)
-
-library('RColorBrewer')
-pal <- brewer.pal(8,"Dark2")
-par(mfrow=c(1,2))
-
-plot(cgr1[,1],cgr1[,2], main=paste("CGR plot of ", names(fasta_filtered)[1],sep=''),
-     xlab = "", ylab = "", cex.main=0.5, cex=0.4, pch = 4, frame = TRUE) 
-plot(cgr2[,1],cgr2[,2], main=paste("CGR plot of ", names(fasta_filtered)[2],sep=''),
-     xlab = "", ylab = "",cex.main=0.5,cex=0.4,pch = 4, frame = TRUE) 
-```
-
 ![CGR_2plots](https://user-images.githubusercontent.com/45668229/196325788-e054df7d-2689-4e77-89c7-53c9f6797a6c.png)
 
 ### Create frequency object for sequences for specific "Word Length"
@@ -248,6 +178,78 @@ ape::write.nexus(my_nj, file='Nexus_NJ_tree.nex') ##for Nexus format
  <p align="center">
 <img src="https://github.com/amarinderthind/CGRphylo/assets/45668229/3fe36df9-bbec-4184-b6e7-3172e4e1b7bf.png" width=86% height=700>
  </p>
+
+
+
+####  If not interested in exploring, Box/CGR plots etc; proceed directly for section ##Create frequency object for sequences for specific "Word Length"
+
+
+##### Sequence length and GC content /Meta info (Optional)
+
+`create_meta` function extracts various types of information from the sequences and stores them into data frame. 
+
+```
+meta <- create_meta(fastafile, N_filter) ## create seq features information
+print(paste("std dev for seq length is",sd(meta$length),sep=" "))
+print(paste("Median of the seq length is",median(meta$length),sep=" "))
+print("Range of the seq length")
+range(meta$length)
+
+#boxplot(meta$length, ylab="Sequence length") ## overall
+
+dotchart(meta$length, labels = meta$name, xlab = "Sequence length", pch = 21, bg = "green", pt.cex = 1, cex = 0.7)
+
+dotchart(meta$GC_content, labels = meta$name, xlab = "GC content", pch = 21, bg = "green", pt.cex = 1, cex = 0.7)
+
+```
+ <p align="center">
+<img src="https://user-images.githubusercontent.com/45668229/196873578-f08d9bd1-2778-44eb-be0a-f6b5c6bd2470.png" width=45% height="400">&nbsp; &nbsp; &nbsp; &nbsp;
+<img src="https://user-images.githubusercontent.com/45668229/196873233-fc4838ac-3787-446f-9ed3-3a3ab40e756b.png" width=45% height="400">
+ 
+</p>
+
+#### Box plot for each strain (Optional)
+```
+# In this example the first part of the sequence name {i.e. beforere_ } is the strain name.
+
+meta$strains <- as.character(lapply(meta$name, function(x) strsplit(x, '_')[[1]][1])) ## split strains names
+
+library(ggplot2)
+ggplot(meta, aes(x = strains, y =length, color = strains )) + geom_boxplot()+ ylab("Sequence length (group level)")+coord_flip() 
+
+#boxplot(log2(meta$length+1))
+len_trim <- min(meta$length)
+
+## Save meta
+#write.csv(meta,paste("length_and_names",N_filter,".csv"))
+```
+ 
+<img src="https://github.com/amarinderthind/CGRphylo/assets/45668229/1cd61221-5475-4740-8296-b18b8246cd9e.png" width="1000" height="400">
+
+#### Visualization of CGR plot (Optional)
+CGRs for each sequence can be visualized by selecting the sequence. `cgrplot` function creates the 'x' and 'y' coordinates for each base pair (to plot on CRG plot).
+
+```
+source('cgrplot.r') ## Load CGR plot function
+
+cgr1 <- cgrplot(1) ## enter the number of sequence from  "fasta_filtered"
+
+
+plot(cgr1[,1],cgr1[,2], main=paste("CGR plot of", names(fasta_filtered)[1],sep=''),
+     xlab = "", ylab = "", cex=0.2, pch = 4, frame = TRUE) 
+
+#compare 2 CGR plots
+cgr2 <- cgrplot(4)
+
+library('RColorBrewer')
+pal <- brewer.pal(8,"Dark2")
+par(mfrow=c(1,2))
+
+plot(cgr1[,1],cgr1[,2], main=paste("CGR plot of ", names(fasta_filtered)[1],sep=''),
+     xlab = "", ylab = "", cex.main=0.5, cex=0.4, pch = 4, frame = TRUE) 
+plot(cgr2[,1],cgr2[,2], main=paste("CGR plot of ", names(fasta_filtered)[2],sep=''),
+     xlab = "", ylab = "",cex.main=0.5,cex=0.4,pch = 4, frame = TRUE) 
+```
 
 
 ### Background
