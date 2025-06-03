@@ -27,9 +27,32 @@ seqinr::write.fasta(sequences=fasta_filtered,names =names(fasta_filtered),file.o
 #write fasta file from filtered sequences
 #seqinr::write.fasta(sequences=fastafile_new,names =sequence_new,file.out =paste("Filtered_N",N_filter,"_new_seq.fasta",sep = ''))
 
- 
 #######################################################################################
-############ Create frequency matrix object for each sequence; one by one #############
+############ Create frequency matrix object for each sequence; one by one #############  
+######################################################################################
+
+library(parallel)
+
+k_mer <- 6  ## define the value of K
+sequence_new <- names(fasta_filtered)
+num_cores <- detectCores() - 1  # Use one less than max to avoid freezing system
+
+# Define the wrapper function
+process_sequence <- function(n) {
+  seq_name <- sequence_new[n]
+  message(paste("Processing sequence:", n, seq_name))
+  result <- cgat(k_mer, n, len_trim)
+  return(result)
+}
+
+# Run in parallel using mclapply (works on Linux/macOS)
+Freq_mat_obj <- mclapply(1:length(fasta_filtered), process_sequence, mc.cores = num_cores)
+
+# Assign names to the result list
+names(Freq_mat_obj) <- sequence_new
+
+#######################################################################################
+############ Create frequency matrix object for each sequence; one by one ############# WITHOUT PARALLEL PROCESSING
 ######################################################################################
 
 k_mer <- 6  ## define the value of K
