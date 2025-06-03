@@ -177,7 +177,7 @@ names(Freq_mat_obj) <- sequence_new
 ## Calculate distances 
 Users can use any of Euclidean (default), Square Euclidean, or Manhattan distance for the distance matrices. `matrixDistance` function takes inputs in the following way for distance calculations.
 
-```
+
 j <- length(sequence_new)
 
 distance <- matrix(0,j,j)  ## defining the empty matrix from distance calculations
