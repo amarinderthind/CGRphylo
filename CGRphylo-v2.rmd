@@ -103,6 +103,29 @@ plot(cgr2[,1],cgr2[,2], main=paste("CGR plot of ", names(fasta_filtered)[2],sep=
 
 ## Create frequency object for sequences 
 
+```{r}
+library(parallel)
+
+k_mer <- 3  ## define the value of K
+sequence_new <- names(fasta_filtered)
+num_cores <- detectCores() - 1  # Use one less than max to avoid freezing system
+
+# Define the wrapper function
+process_sequence <- function(n) {
+  seq_name <- sequence_new[n]
+  message(paste("Processing sequence:", n, seq_name))
+  result <- cgat(k_mer, n, len_trim)
+  return(result)
+}
+
+# Run in parallel using mclapply (works on Linux/macOS)
+Freq_mat_obj <- mclapply(1:length(fasta_filtered), process_sequence, mc.cores = num_cores)
+
+# Assign names to the result list
+names(Freq_mat_obj) <- sequence_new
+
+
+```
 
 ```{r}
 k_mer <- 3  ## define the value of K
