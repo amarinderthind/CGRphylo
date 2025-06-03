@@ -155,6 +155,25 @@ Freq_mat_obj <- mclapply(1:length(fasta_filtered), process_sequence, mc.cores = 
 names(Freq_mat_obj) <- sequence_new
 
 ```
+## Use following if Parallel is not working 
+```
+```{r}
+k_mer <- 6  ## define the value of K
+Freq_mat_obj <- list()
+sequence_new <- names(fasta_filtered) 
+
+for(n in 1:length(fasta_filtered)) {   
+  
+  ##skip passing whole data to the function ##increase speed  ## "fasta_filtered" name is fixed
+  
+  Freq_mat_obj[[n]] <- cgat(k_mer,n, len_trim) # executing one seq at a time    #k-mer,seq_length,trimmed_length
+  print(paste("processing sequence : ",n , sequence_new[n], sep=" "))
+  
+}
+
+names(Freq_mat_obj) <- sequence_new
+```
+```
 ## Calculate distances 
 Users can use any of Euclidean (default), Square Euclidean, or Manhattan distance for the distance matrices. `matrixDistance` function takes inputs in the following way for distance calculations.
 
