@@ -1,0 +1,49 @@
+Package: CGRphylo
+Type: Package
+Title: Chaos Game Representation for Phylogenetic Analysis
+Version: 0.99.0
+Date: 2026-02-13
+Authors@R: person("Amarinder Singh", "Thind", 
+                  email = "amarinder.thind@gmail.com",
+                  role = c("aut", "cre"),
+                  comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: CGRphylo provides an efficient alignment-free approach for 
+    phylogenetic analysis of viral genomes using Chaos Game Representation (CGR). 
+    It accurately classifies closely related viral strains, including recombinants, 
+    making it particularly valuable during epidemic outbreaks where thousands of 
+    viral sequences need rapid analysis. The package processes genomic sequences 
+    significantly faster than traditional multiple sequence alignment methods 
+    (5-13.7x faster than Clustal-Omega), with computational cost that scales 
+    linearly rather than quadratically with dataset size. It is designed for both 
+    high and low-resource settings, creating frequency matrices for each sequence 
+    that can be used to calculate distances and construct phylogenetic trees.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Depends:
+    R (>= 4.4.0)
+Imports:
+    Biostrings,
+    methods,
+    stats,
+    utils,
+    graphics,
+    parallel
+Suggests:
+    BiocStyle,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    ape,
+    seqinr,
+    stringr,
+    ggplot2,
+    RColorBrewer,
+    treeio
+VignetteBuilder: knitr
+biocViews: Phylogenetics, Genetics, SequenceMatching, Alignment, 
+    Clustering, Visualization, Software
+BugReports: https://github.com/amarinderthind/CGRphylo/issues
+URL: https://github.com/amarinderthind/CGRphylo
+RoxygenNote: 7.3.1
+Config/testthat/edition: 3
