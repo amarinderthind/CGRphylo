@@ -1,0 +1,161 @@
+# Installation Instructions for CGRphylo
+
+## Prerequisites
+
+### R Version
+- R >= 4.4.0
+
+### System Requirements
+- None specific (pure R implementation)
+
+## Installation Methods
+
+### Method 1: From Bioconductor (Recommended - After Acceptance)
+
+```r
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("CGRphylo")
+```
+
+### Method 2: From GitHub (Current Development)
+
+```r
+# Install devtools if needed
+if (!require("devtools", quietly = TRUE))
+    install.packages("devtools")
+
+# Install from GitHub
+devtools::install_github("amarinderthind/CGRphylo")
+```
+
+### Method 3: From Local Source
+
+```r
+# Install dependencies first
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+# Install Bioconductor dependencies
+BiocManager::install(c("Biostrings"))
+
+# Install CRAN dependencies
+install.packages(c("seqinr", "stringr", "ggplot2", "RColorBrewer", 
+                   "ape", "treeio", "parallel"))
+
+# Install from local source
+install.packages("path/to/CGRphylo_0.99.0.tar.gz", 
+                repos = NULL, 
+                type = "source")
+```
+
+### Method 4: Build and Install Locally
+
+From within the package directory:
+
+```r
+# Generate documentation
+devtools::document()
+
+# Install
+devtools::install()
+```
+
+Or from command line:
+
+```bash
+R CMD build CGRphylo
+R CMD INSTALL CGRphylo_0.99.0.tar.gz
+```
+
+## Verifying Installation
+
+```r
+# Load the package
+library(CGRphylo)
+
+# Check version
+packageVersion("CGRphylo")
+
+# View help
+?cgat
+
+# Run example
+example(cgat)
+```
+
+## Troubleshooting
+
+### Issue: Biostrings not found
+
+```r
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("Biostrings")
+```
+
+### Issue: seqinr not found
+
+```r
+install.packages("seqinr")
+```
+
+### Issue: Compilation errors
+CGRphylo is pure R and requires no compilation. If you see compilation errors, 
+check that all dependencies are properly installed.
+
+### Issue: Vignette not building
+
+```r
+# Install vignette dependencies
+install.packages(c("knitr", "rmarkdown", "BiocStyle"))
+```
+
+## Dependencies
+
+### Required
+- R (>= 4.4.0)
+- Biostrings
+- methods
+- stats
+- utils
+- graphics
+- parallel
+
+### Suggested (for full functionality)
+- BiocStyle (for vignettes)
+- knitr (for vignettes)
+- rmarkdown (for vignettes)
+- testthat (>= 3.0.0) (for testing)
+- ape (for tree building)
+- seqinr (for FASTA reading)
+- stringr (for string manipulation)
+- ggplot2 (for visualization)
+- RColorBrewer (for color schemes)
+- treeio (for tree I/O)
+
+## Platform-Specific Notes
+
+### Windows
+- Parallel processing uses sequential fallback
+- All other features work normally
+
+### macOS / Linux
+- Full parallel processing support via mclapply
+- No special configuration needed
+
+## Getting Help
+
+If you encounter installation issues:
+
+1. Check you have R >= 4.4.0: `R.version.string`
+2. Update all packages: `update.packages(ask = FALSE)`
+3. Try BiocManager::install() for dependencies
+4. Post issues to: https://github.com/amarinderthind/CGRphylo/issues
+
+## Uninstalling
+
+```r
+remove.packages("CGRphylo")
+```
